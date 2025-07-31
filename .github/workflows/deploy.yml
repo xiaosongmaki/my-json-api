@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - codegen/dev-68-spike-诊断cicd-ssh部署失败的原因
   workflow_dispatch:
 
 env:
@@ -58,7 +59,7 @@ jobs:
     name: Deploy to Server
     needs: build-and-push
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/codegen/dev-68-spike-诊断cicd-ssh部署失败的原因'
 
     steps:
       - name: Checkout code
@@ -175,4 +176,3 @@ jobs:
           docker context use default
           docker context rm remote || true
           rm -f ~/.ssh/deploy_key
-
